@@ -1,5 +1,5 @@
 <?php
-include 'connexion.php'; // Inclusion du fichier de connexion
+include 'config.php'; // Inclusion du fichier de connexion
 
 // Requête pour obtenir les terrains en entretien ou hors service
 $query = "SELECT idTerrain, etat FROM TERRAINS WHERE etat IN (1, 2)";
