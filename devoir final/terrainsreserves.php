@@ -57,34 +57,17 @@ if (isset($_POST['dateMatch']) && !empty($_POST['dateMatch'])) {
     $dateMatch = mysqli_real_escape_string($conn, $_POST['dateMatch']);
     $heureMatch = isset($_POST['heureMatch']) ? mysqli_real_escape_string($conn, $_POST['heureMatch']) : '';
 
-    // Construction de la requête SQL
     $query = "SELECT idReservation, dateMatch, heureMatch, idTerrain, duration, heureFin, idClient
               FROM RESERVATIONS
-              WHERE dateMatch = '$dateMatch'"; // Filtre par date
-// Filtrage par heure si spécifiée
-if ($heureMatch != '') {
-    $query .= " AND heureMatch = '$heureMatch'";
-}
-
-$query .= " ORDER BY heureMatch ASC";
-
-// Exécution de la requête
-$result = mysqli_query($conn, $query);
-
-
-      // Exécution de la requête
-      if (mysqli_query($conn, $insertQuery)) {
-        echo "<p>Réservation effectuée avec succès pour le $dateMatch à $heureMatch.</p>";
-    } else {
-        echo "<p>Erreur dans la réservation : " . mysqli_error($conn) . "</p>";
+              WHERE dateMatch = '$dateMatch'";
+    if ($heureMatch != '') {
+        $query .= " AND heureMatch = '$heureMatch'";
     }
+
+    $query .= " ORDER BY heureMatch ASC";
+    $result = mysqli_query($conn, $query);
 }
-
-
 ?>
-
-
-
 
 <!DOCTYPE html>
 <html lang="fr">
